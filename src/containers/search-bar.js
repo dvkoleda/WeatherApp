@@ -20,9 +20,15 @@ class SearchBar extends React.Component {
         this.setState({term: event.target.value});
     }
 
+    onFormSubmit(event) {
+        event.preventDefault();
+
+        //load weather data here
+    }
+
     render() {
         return (
-            <form className="input-group">
+            <form onSubmit={this.onFormSubmit} className="input-group">
                 <input
                     placeholder="Get a five-day forecast in you favorite cities"
                     className="form-control"
