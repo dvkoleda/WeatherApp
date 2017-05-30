@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import { connect } from 'react-redux';
+import { fetchWeather } from '../ducks/weather-widget';
 
 class SearchBar extends React.Component {
 
@@ -13,17 +14,19 @@ class SearchBar extends React.Component {
         };
 
         this.onInputChange = this.onInputChange.bind(this);
+        this.onFormSubmit = this.onFormSubmit.bind(this);
     }
 
     onInputChange(event) {
         console.log(event.target.value);
-        this.setState({term: event.target.value});
+        this.setState( {term: event.target.value} );
     }
 
     onFormSubmit(event) {
         event.preventDefault();
-
         //load weather data here
+        this.props.fetchWeather(this.state.term);
+        this.setState( {term: ''} );
     }
 
     render() {
@@ -44,4 +47,4 @@ class SearchBar extends React.Component {
     }
 }
 
-export default SearchBar;
+export default connect(null,{fetchWeather: fetchWeather})(SearchBar);
