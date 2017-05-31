@@ -7,8 +7,9 @@ import weatherService from '../services/weather-service';
 const FETCH_WEATHER = 'FETCH_WEATHER';
 
 //reduce function
-export default function reduce( state = {}, action) {
-    return actionsMap[action](state, action) || state;
+export default function reduce(state = [], action) {
+    const reactOnAction = actionsMap[action.type];
+    return reactOnAction ? reactOnAction(state, action) : state;
 }
 
 //action creators
@@ -20,5 +21,5 @@ export function fetchWeather(city) {
 }
 
 const actionsMap = {
-    FETCH_WEATHER : (state, action) => {}
+    FETCH_WEATHER : (state, action) => [ action.payload.data, ...state ]
 };
