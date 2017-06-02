@@ -12,7 +12,7 @@ class GoogleMap extends React.Component {
             zoom: 12,
             center: {
                 lat: this.props.lat,
-                log: this.props.lon
+                lng: this.props.lon
             }
         });
     }
